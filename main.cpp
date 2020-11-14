@@ -1,18 +1,23 @@
-#include <iostream>
-#include <array>
+#include "compile_time_experiments.h"
 
 
-//template<typename T, T... args>
-//void print(std::index_sequence<T, args...> sequence) {
-//    std::cout << __func__ << ": ";
-//    ((std::cout << args << ' '),...);
-//    std::cout << "\n";
-//}
+int main() {
+    // return fib_example();
 
+    // return sum_example();
 
-//int main() {
-//    std::array params{1, 2, 3, 4, 5};
-//    print(params);
-//
-//    return 0;
-//}
+    // return map_concat_example();
+    // return map_concat_example_without_out();
+
+    // return divmod_example();
+    // return divmod_example_without_out();
+
+    // return signal_example();
+    // return signal_example_without_out();
+
+    return signal_sequence_example();
+    // return signal_sequence_example_without_out();
+
+    // return int_to_char_array_example();
+    // return int_to_char_array_example_without_out();
+}
