@@ -2,15 +2,15 @@
 
 
 int main() {
+    // return divmod_example();
+    // return divmod_example_without_out();
+
     // return fib_example();
 
     // return sum_example();
 
     // return map_concat_example();
     // return map_concat_example_without_out();
-
-    // return divmod_example();
-    // return divmod_example_without_out();
 
     // return signal_example();
     // return signal_example_without_out();

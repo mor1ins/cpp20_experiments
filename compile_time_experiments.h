@@ -15,6 +15,36 @@
 
 
 ///////////////////////////////////////////////////////////////////
+///////////////////////////// DIVMOD  /////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+template <typename T>
+auto 
+divmod(T a, T b) {
+    static_assert(std::numeric_limits<T>::is_integer, "Only integer types allowed!");
+    return std::make_tuple(a / b, a % b);
+}
+
+inline int 
+divmod_example() {
+    auto [div, mod] = divmod(10, 3);
+    std::cout << div << " " << mod << std::endl;
+
+    return 0;
+}
+
+inline int 
+divmod_example_without_example() {
+    auto [div, mod] = divmod(10, 3);
+
+    volatile auto div1 = div;
+    volatile auto mod1 = mod;
+
+    return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////
 /////////////////////////// FIBONACCI /////////////////////////////
 ///////////////////////////////////////////////////////////////////
 consteval int 
@@ -137,35 +167,6 @@ map_concat_example_without_out() {
     return 0;
 }
 
-///////////////////////////////////////////////////////////////////
-///////////////////////////// DIVMOD  /////////////////////////////
-///////////////////////////////////////////////////////////////////
-
-template <typename T>
-auto 
-divmod(T a, T b) {
-    static_assert(std::numeric_limits<T>::is_integer, "Only integer types allowed!");
-    return std::make_tuple(a / b, a % b);
-}
-
-inline int 
-divmod_example() {
-    auto [div, mod] = divmod(10, 3);
-    std::cout << div << " " << mod << std::endl;
-
-    return 0;
-}
-
-inline int 
-divmod_example_without_example() {
-    auto [div, mod] = divmod(10, 3);
-
-    volatile auto div1 = div;
-    volatile auto mod1 = mod;
-
-    return 0;
-}
-
 
 ///////////////////////////////////////////////////////////////////
 ///////////////////// VIBRATION SIGNALS  //////////////////////////
@@ -173,28 +174,31 @@ divmod_example_without_example() {
 
 struct Signal {
 public:
-    consteval
-    explicit
+    consteval explicit
     Signal(std::size_t time = 0, bool is_pause = false)
     : time(time), is_pause(is_pause)
     {}
 
-    consteval Signal operator+(const Signal& other) const {
+    consteval Signal 
+    operator+(const Signal& other) const {
         return Signal(this->time + other.time, this->is_pause && other.is_pause);
     }
 
-    consteval void operator=(const Signal& other) {
+    consteval void 
+    operator=(const Signal& other) {
         if (this != &other) { // self-assignment check expected
             this->time = other.time;
             this->is_pause = other.is_pause;
         }
     }
 
-    consteval Signal operator+(const int other) const {
+    consteval Signal 
+    operator+(const int other) const {
         return Signal(this->time + other, this->is_pause);
     }
 
-    [[nodiscard]] consteval Signal tick() const {
+    [[nodiscard]] consteval Signal 
+    tick() const {
         return Signal(time > 0 ? time - 1 : 0, is_pause);
     }
 
@@ -216,14 +220,18 @@ struct Vibrate : Signal {
 template<size_t N = 0, typename ...Args>
 struct SignalSequence {
 public:
-    static consteval auto length() {
+    static consteval auto 
+    length() {
         return N > 0 ? N : sizeof...(Args);
     }
 
-    consteval explicit SignalSequence(std::array<Signal, N> sequence) : sequence(sequence) {}
-    consteval explicit SignalSequence(Args... more) : sequence({more...}) {}
+    consteval explicit 
+    SignalSequence(std::array<Signal, N> sequence) : sequence(sequence) {}
+    consteval explicit 
+    SignalSequence(Args... more) : sequence({more...}) {}
 
-    consteval auto sum() const {
+    consteval auto 
+    sum() const {
         int sum = 0;
         for (auto signal: sequence) sum += signal.time;
         return sum;
