@@ -444,7 +444,7 @@ get_delimiter_impl(const char (&delimiter)[N]) {
 
 inline int 
 int_to_char_array_example() {
-   constexpr std::array ints = int_to_string<1076>();
+   constexpr std::array ints = int_to_string<177>();
    constexpr std::array delimiter = str_to_chars<get_delimiter_impl(", ")>();
    constexpr std::array ints_str = join(delimiter, ints);
 

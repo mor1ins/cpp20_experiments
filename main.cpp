@@ -15,9 +15,9 @@ int main() {
     // return signal_example();
     // return signal_example_without_out();
 
-    return signal_sequence_example();
-    // return signal_sequence_example_without_out();
+//    return signal_sequence_example();
+//     return signal_sequence_example_without_out();
 
-    // return int_to_char_array_example();
+     return int_to_char_array_example();
     // return int_to_char_array_example_without_out();
 }
