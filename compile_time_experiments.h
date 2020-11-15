@@ -454,6 +454,7 @@ int_to_char_array_example() {
    return 0;
 }
 
+
 inline int 
 int_to_char_array_example_without_out() {
    constexpr std::array ints = int_to_string<1076>();
